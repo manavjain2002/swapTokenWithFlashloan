@@ -20,7 +20,7 @@ const USDCContractAddress = "0x52D800ca262522580CeBAD275395ca6e7598C014"
 const usdcTransferAmount = "50000000" // 50 USDC
 
 /* Contract Address that swaps the tokens */
-const SwapContractAddress = "0x28e22216b95D1D72Da58A78a37198f10F8139a8c"
+const SwapContractAddress = "0x30a0b263c30Be6fC3de57d5F57f773bce16C8DA1"
 
 /* Uniswap Router Address */
 const Router1Address = "0x8954AfA98594b838bda56FE4C12a09D7739D179b"
@@ -29,7 +29,7 @@ const Router1Address = "0x8954AfA98594b838bda56FE4C12a09D7739D179b"
 const Router2Address = "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"
 
 /* Another deployed token address */
-const DeployedTokenAddress = "0xd7E9Db4186fb1DedD82CD2324421293FECd722b1"
+const DeployedTokenAddress = "0xD065601A439512223E4555914DAce902f9fCF736"
 
 /* USDC Input amount to swap the token */
 const inputAmt = "500000000" // 500 USDC
