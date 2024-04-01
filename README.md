@@ -2,12 +2,20 @@
 
 ### Setup
 
-#### 1. Compile the contracts
+#### 1. Clone the repo, install the packages, and update the env file with rpc and private key
+```shell
+git clone https://github.com/manavjain2002/swapTokenWithFlashloan.git
+cd swapTokenWithFlashloan
+npm i
+cp env.example .env
+```
+
+#### 2. Compile the contracts
 ```shell
 npx hardhat compile
 ```
 
-#### 2. Set the addresses value in constants
+#### 3. Set the addresses value in constants
 
 ```js
 /* FlashloanProvider address for testnet */
@@ -35,7 +43,7 @@ const DeployedTokenAddress = "0xD065601A439512223E4555914DAce902f9fCF736"
 const inputAmt = "500000000" // 500 USDC
 ```
 
-#### 3. Deploy Contract
+#### 4. Deploy Contract
 
 ##### This step will deploy the new swap contract and transfers the 50 USDC to SwapContractAddress.
 
@@ -45,7 +53,7 @@ npm run deploy
 
 #### Remeber:  Add the swap contract address to the constants.js file. 
 
-#### 4. Set Addresses 
+#### 5. Set Addresses 
 
 ##### This step will configure the router and token addresses on the SwapContractAddress.
 
@@ -53,7 +61,7 @@ npm run deploy
 npm run configure
 ```
 
-#### 5. Start Swapping
+#### 6. Start Swapping
 
 ##### This step will take the flashloan first and then swaps the USDC with deployed token address.
 
@@ -61,20 +69,23 @@ npm run configure
 npm run swap
 ```
 
+
 ### Example Transactions
 
-##### Deployed Token Contract Address : 0xD065601A439512223E4555914DAce902f9fCF736
+##### Deployed Token Contract Address : 0xc6F53B8b782b35C207B452d2FC19A15b45B46a70
+
+##### Token Deployment Tx: https://mumbai.polygonscan.com/tx/0xefcd93f59d326ba14f5079199d0a190beeb91379e3472b6312d14f04704e7a88
 
 ##### USDC Contract Address : 0x52D800ca262522580CeBAD275395ca6e7598C014
 
-##### Deployed Swap Contract Address : 0x30a0b263c30Be6fC3de57d5F57f773bce16C8DA1
+##### Deployed Swap Contract Address : 0x7C4ae7aF94DF0894fF6309E7729cE9ce949f8A4B
 
-##### Contract Deployment Tx : https://mumbai.polygonscan.com/tx/0x254a041da6879d6b98d38694e0eddac778b31f68f30d930859d0db26c84db010
+##### Contract Deployment Tx : (https://mumbai.polygonscan.com/tx/0xfb6b13314da8f3880a38916ee75dac707926595cd67fe051c04d3ca83a9f941c)
 
-##### USDC Transfer Tx : https://mumbai.polygonscan.com/tx/0x200c583d8ce9a1eee114724f121ca6c1469d55d2341cb504879ac92acf38672f
+##### USDC Transfer Tx : https://mumbai.polygonscan.com/tx/0xd2c52381b1cbbd21714bc3542b3a1f84815b4b22b9131c44a8791d95c6188165
 
-##### Set Routers Tx : https://mumbai.polygonscan.com/tx/0xa526f7a62c6792b0add68e745157be578635759a4f08e77c04c81ff6e0e21940
+##### Set Routers Tx : https://mumbai.polygonscan.com/tx/0x2e6b76e1fee9d491b4be9d0cf366c2e1f50a152f6e7a83f962cad896380e5f4c
 
-##### Set Tokens Tx : https://mumbai.polygonscan.com/tx/0xe3912b1ad6549509975577c6aa3d600d08fbe25dfa80839675017fa644b5ff83
+##### Set Tokens Tx : https://mumbai.polygonscan.com/tx/0x0f54bed6b47e19ffde1f25d93a452ba8290db95465a4e5dc7ba05f2b9fbe9b0f
 
-##### Swap Tx Hash : https://mumbai.polygonscan.com/tx/0xc3254aebe4dd90c2acdc56d8ea15104cd90433a29b3ae09a974ab003aedbe74c
+##### Swap Tx Hash : https://mumbai.polygonscan.com/tx/0x217b548dd7ee7fd50145a305125ad1c26639ba9f04ecfdbb0ca6598eed8966ad
