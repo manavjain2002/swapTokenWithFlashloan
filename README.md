@@ -1,5 +1,3 @@
-# Sample Hardhat Project
-
 ## Swap Tokens 
 
 ### Setup
