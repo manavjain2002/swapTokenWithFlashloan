@@ -36,7 +36,7 @@ const Router1Address = "0x8954AfA98594b838bda56FE4C12a09D7739D179b"
 /* Sushiswap Router Address */
 const Router2Address = "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"
 
-/* Another deployed token address */
+/* Another deployed token address  which will be used for swapping */
 const DeployedTokenAddress = "0xD065601A439512223E4555914DAce902f9fCF736"
 
 /* USDC Input amount to swap the token */
