@@ -73,29 +73,48 @@ npm run swap
 ### Example Transactions
 
 ### Address of the token that will be swapped with the USDC.
-##### Deployed Token Contract Address : 0xc6F53B8b782b35C207B452d2FC19A15b45B46a70
+```shell
+Deployed Token Contract Address : 0xc6F53B8b782b35C207B452d2FC19A15b45B46a70
+```
 
 ### Transaction to deploy the token that will be used to swap with USDC.
-##### Token Deployment Tx: https://mumbai.polygonscan.com/tx/0xefcd93f59d326ba14f5079199d0a190beeb91379e3472b6312d14f04704e7a88
+```shell
+Token Deployment Tx: https://mumbai.polygonscan.com/tx/0xefcd93f59d326ba14f5079199d0a190beeb91379e3472b6312d14f04704e7a88
+```
 
 ### USDC contract address on mumbai testnet
-##### USDC Contract Address : 0x52D800ca262522580CeBAD275395ca6e7598C014
+```shell
+USDC Contract Address : 0x52D800ca262522580CeBAD275395ca6e7598C014
+```
+
 
 ### Address of the contract that will swap USDC with other deployed token(Address of the contract that we will deploy using `npm run deploy`)
-##### Deployed Swap Contract Address : 0x7C4ae7aF94DF0894fF6309E7729cE9ce949f8A4B
+```shell
+Deployed Swap Contract Address : 0x7C4ae7aF94DF0894fF6309E7729cE9ce949f8A4B
+```
 
 
 ### Transaction to deploy the swapper contract
-##### Contract Deployment Tx : (https://mumbai.polygonscan.com/tx/0xfb6b13314da8f3880a38916ee75dac707926595cd67fe051c04d3ca83a9f941c)
+```shell
+Contract Deployment Tx : (https://mumbai.polygonscan.com/tx/0xfb6b13314da8f3880a38916ee75dac707926595cd67fe051c04d3ca83a9f941c)
+```
 
 ### Transaction to transfer USDC while deploying the swapper contract.
-##### USDC Transfer Tx : https://mumbai.polygonscan.com/tx/0xd2c52381b1cbbd21714bc3542b3a1f84815b4b22b9131c44a8791d95c6188165
+```shell
+USDC Transfer Tx : https://mumbai.polygonscan.com/tx/0xd2c52381b1cbbd21714bc3542b3a1f84815b4b22b9131c44a8791d95c6188165
+```
 
 ### Transaction to configure the routers of uniswap and sushiswap in swapper contract
-##### Set Routers Tx : https://mumbai.polygonscan.com/tx/0x2e6b76e1fee9d491b4be9d0cf366c2e1f50a152f6e7a83f962cad896380e5f4c
+```shell
+Set Routers Tx : https://mumbai.polygonscan.com/tx/0x2e6b76e1fee9d491b4be9d0cf366c2e1f50a152f6e7a83f962cad896380e5f4c
+```
 
 ### Transaction to configure the tokens of USDC and other DeployedTokenAddress in swapper contract
-##### Set Tokens Tx : https://mumbai.polygonscan.com/tx/0x0f54bed6b47e19ffde1f25d93a452ba8290db95465a4e5dc7ba05f2b9fbe9b0f
+```shell
+Set Tokens Tx : https://mumbai.polygonscan.com/tx/0x0f54bed6b47e19ffde1f25d93a452ba8290db95465a4e5dc7ba05f2b9fbe9b0f
+```
 
 ### Transaction that swaps the token A to token B on uniswap and then swaps token B to token A on sushiswap on Swapper Contract.
-##### Swap Tx Hash : https://mumbai.polygonscan.com/tx/0x217b548dd7ee7fd50145a305125ad1c26639ba9f04ecfdbb0ca6598eed8966ad
+```shell
+Swap Tx Hash : https://mumbai.polygonscan.com/tx/0x217b548dd7ee7fd50145a305125ad1c26639ba9f04ecfdbb0ca6598eed8966ad
+```
