@@ -17,7 +17,7 @@ interface IUniswapV2Router {
         uint256 amountOutMin,
         address[] calldata path,
         address to,
-        uint256 deadlinea
+        uint256 deadline
     ) external returns (uint256[] memory amounts);
 }
 
@@ -39,32 +39,39 @@ contract SwapContract is Ownable, FlashLoanSimpleReceiverBase {
         _token2 = token2;
     }
 
-    function swapTokenAtoB(uint256 _amount) private {
-        IERC20(_token1).approve(_router1, _amount);
+    function swapTokenAtoB(uint256 _amount) private returns(bool){
+        bool approvalSuccess = IERC20(_token1).approve(_router1, _amount);
+        require(approvalSuccess, "Unable to approve the tokens");
         address[] memory path;
         path = new address[](2);
         path[0] = _token1;
         path[1] = _token2;
         uint deadline = block.timestamp;
-        IUniswapV2Router(_router1).swapExactTokensForTokens(_amount, 0, path, address(this), deadline);
+        uint256[] memory amounts = IUniswapV2Router(_router1).swapExactTokensForTokens(_amount, 0, path, address(this), deadline);
+        return amounts[1] > 0;
     }
 
-    function swapTokenBtoA(uint256 _amount) private {
-        IERC20(_token2).approve(_router2, _amount);
+    function swapTokenBtoA(uint256 _amount) private returns(bool){
+        bool approvalSuccess = IERC20(_token2).approve(_router2, _amount);
+        require(approvalSuccess, "Unable to approve the tokens");
         address[] memory path;
         path = new address[](2);
         path[0] = _token2;
         path[1] = _token1;
         uint deadline = block.timestamp;
-        IUniswapV2Router(_router2).swapExactTokensForTokens(_amount, 0, path, address(this), deadline);
+        uint256[] memory amounts = IUniswapV2Router(_router2).swapExactTokensForTokens(_amount, 0, path, address(this), deadline);
+        return amounts[1] > 0;
     }
 
-    function startSwapping(uint256 _amount) internal {
+    function startSwapping(uint256 _amount) internal returns(bool){
         uint token2InitialBalance = IERC20(_token2).balanceOf(address(this));
-        swapTokenAtoB(_amount);
+        bool swapAToBSuccess = swapTokenAtoB(_amount);
+        require(swapAToBSuccess, "Swap A to B unsuccessful");
         uint token2Balance = IERC20(_token2).balanceOf(address(this));
         uint tradeableAmount = token2Balance - token2InitialBalance;
-        swapTokenBtoA(tradeableAmount);
+        bool swapBToASuccess = swapTokenBtoA(tradeableAmount);
+        require(swapBToASuccess, "Swap B to A unsuccessful");
+        return true;
     }
 
     function withdrawETH() external onlyOwner {
@@ -76,11 +83,17 @@ contract SwapContract is Ownable, FlashLoanSimpleReceiverBase {
     }
 
     function withdrawTokens(address tokenAddress) external onlyOwner {
-        IERC20(tokenAddress).transfer(msg.sender, IERC20(tokenAddress).balanceOf(address(this)));
+        uint256 tokenBalance = IERC20(tokenAddress).balanceOf(address(this));
+        require(tokenBalance > 0, "Withdrawal token amount should be greater than zero.");
+        bool withdrawalSuccess = IERC20(tokenAddress).transfer(msg.sender, tokenBalance);
+        require(withdrawalSuccess, "Withdrawal tokens failed");
     }
 
     function withdrawTokens(address tokenAddress, uint256 _amount) external onlyOwner {
-        IERC20(tokenAddress).transfer(msg.sender, _amount);
+        uint256 tokenBalance = IERC20(tokenAddress).balanceOf(address(this));
+        require(tokenBalance >= _amount, "Withdrawal token amount should be greater than balance");
+        bool withdrawalSuccess = IERC20(tokenAddress).transfer(msg.sender, _amount);
+        require(withdrawalSuccess, "Withdrawal tokens failed");
     }
 
     function tradeTokens(
@@ -104,7 +117,8 @@ contract SwapContract is Ownable, FlashLoanSimpleReceiverBase {
         //
         // This contract now has the funds requested.
         // Your logic goes here.
-        startSwapping(amount);
+        bool arbSuccess = startSwapping(amount);
+        require(arbSuccess, "Arbitrage failed");
 
         // At the end of your logic above, this contract owes
         // the flashloaned amount + premiums.
@@ -113,7 +127,8 @@ contract SwapContract is Ownable, FlashLoanSimpleReceiverBase {
 
         // Approve the Pool contract allowance to *pull* the owed amount
         uint256 totalAmount = amount + premium;
-        IERC20(asset).approve(address(POOL), totalAmount);
+        bool approvalSuccess = IERC20(asset).approve(address(POOL), totalAmount);
+        require(approvalSuccess, "Unable to approve asset tokens to pool address");
 
         return true;
     }
