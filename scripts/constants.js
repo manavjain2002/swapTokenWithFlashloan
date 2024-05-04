@@ -24,7 +24,7 @@ const DeployedTokenAddress = "0x9E85Aea252237c08e31Ae4FC1b2dF5ea2F4C055d";
 
 /* USDC Input amount to swap the token i,e USDC amountIn value that will be used for swapping */
 // Don't make it more than 350000000 USDC, as the AAVE Flashloan has maximum 350000000 amount of tokens
-const inputAmt = "10000000"; // 60 USDC
+const inputAmt = "10000000"; // 10 USDC
 
 const provider = new ethers.JsonRpcProvider(process.env.RPC);
 
